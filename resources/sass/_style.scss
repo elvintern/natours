@@ -1,0 +1,720 @@
+@use "abstracts/variables" as v;
+@use "abstracts/mixins" as m;
+
+// ********************************************************************
+// General Style
+// ********************************************************************
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+::selection {
+  background-color: v.$color-primary;
+  color: v.$color-white;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font: 1.6rem "Lato", sans-serif;
+  color: v.$color-grey-dark;
+  padding: 3rem;
+}
+
+// ********************************************************************
+// Utility Style
+// ********************************************************************
+.heading-primary {
+  font-size: 7rem;
+  font-weight: 400;
+  line-height: 0.9;
+
+  &__text {
+    display: inline-block;
+
+    &--main {
+      letter-spacing: 3.5rem;
+      animation: slideInLeft 1.5s linear forwards;
+    }
+
+    @keyframes slideInLeft {
+      0% {
+        opacity: 0;
+        transform: translate(-30%, 0);
+      }
+
+      70% {
+        transform: translate(10%, 0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    }
+
+    &--sub {
+      font-size: 2.3rem;
+      letter-spacing: 1.8rem;
+      word-spacing: 1rem;
+      animation: slideInRight 1.5s linear forwards;
+    }
+
+    @keyframes slideInRight {
+      0% {
+        opacity: 0;
+        transform: translate(30%, 0);
+      }
+
+      70% {
+        transform: translate(-10%, 0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    }
+  }
+}
+
+.heading-secondary {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 11rem;
+  @include m.heading-style;
+
+  &--left {
+    text-align: left;
+    margin-bottom: 6rem;
+  }
+}
+
+.btn {
+  font-size: 1.8rem;
+  font-weight: 700;
+  @include m.box-transition;
+  @include m.link-style;
+
+  @keyframes slideUp {
+    0% {
+      transform: translate(0, 40%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  &--animated {
+    position: relative;
+    margin-top: 8rem;
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 40px;
+      z-index: -1;
+      @include m.box-transition;
+    }
+  }
+
+  &--slideup {
+    opacity: 0;
+    animation: slideUp 0.8s 1.5s linear forwards;
+  }
+
+  &--white {
+    background-color: v.$color-white;
+    color: v.$color-grey-dark;
+
+    &::after {
+      background-color: v.$color-white;
+    }
+  }
+
+  &--green {
+    background-color: v.$color-primary;
+    color: v.$color-white;
+
+    &::after {
+      background-color: v.$color-primary;
+    }
+  }
+
+  &--round {
+    text-transform: uppercase;
+    @include m.btn-style;
+  }
+
+  &--square {
+    font-size: 1.7rem;
+    font-weight: 600;
+    padding: 1.2rem;
+    border-bottom: solid 2px v.$color-primary;
+    color: v.$color-primary;
+
+    &:hover {
+      background-color: v.$color-primary;
+      color: v.$color-white;
+    }
+  }
+
+  &--no-border {
+    border: none;
+  }
+
+  &--no-margin {
+    margin: 0;
+  }
+
+  &:hover {
+    @include m.box-animation(5px, -5%);
+
+    &::after {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    @include m.box-animation(0, 0);
+  }
+}
+
+.paragraph {
+  @include m.paragraph-style;
+
+  &--last {
+    margin-bottom: 4rem;
+  }
+
+  &--feature {
+    margin-bottom: 0;
+  }
+}
+
+// ********************************************************************
+// Header Style
+// ********************************************************************
+.header {
+  height: 100vh;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 95vh);
+  @include m.bg-style("../img/compressed/hero-min.jpg");
+
+  &__logo {
+    width: 10rem;
+    margin: 4rem;
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 6rem;
+  right: 6rem;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: v.$color-white;
+  box-shadow: 0 5px 12px v.$color-grey;
+  cursor: pointer;
+  z-index: 3;
+
+  &__icon {
+    &,
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 3rem;
+      height: 0.2rem;
+      background-color: v.$color-black;
+    }
+
+    &::before {
+      transform: translate(-50%, -600%);
+    }
+
+    &::after {
+      transform: translate(-50%, 500%);
+    }
+  }
+}
+
+.hero-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: v.$color-white;
+  text-align: center;
+}
+
+// ********************************************************************
+// Section-about Style
+// ********************************************************************
+.section-about {
+  background-color: v.$color-white-dark;
+  margin-top: -25vh;
+  padding: v.$padding-section;
+
+  &__container {
+    @include m.flex-style;
+  }
+
+  &__text {
+    flex-basis: 53%;
+  }
+}
+
+.gallery {
+  position: relative;
+  flex-basis: 47%;
+
+  &__img {
+    width: 34rem;
+    position: absolute;
+    @include m.box-style;
+    @include m.box-transition(0.2s);
+
+    &:hover {
+      outline: solid 1.8rem v.$color-primary;
+      outline-offset: 2rem;
+      z-index: 1;
+      box-shadow: 0 5px 10px v.$color-grey;
+      transform: scale(1.05) translateY(-12%);
+    }
+
+    &--back {
+      top: -2%;
+      left: 6%;
+    }
+
+    &--middle {
+      top: 8%;
+      left: 56%;
+    }
+
+    &--front {
+      top: 30%;
+      left: 25%;
+    }
+  }
+}
+
+// ********************************************************************
+// Section-about Style
+// ********************************************************************
+.section-features {
+  padding: v.$padding-section;
+  transform: skewY(-5deg);
+  margin-top: -15vh;
+  @include m.bg-style("../img/compressed/nat-4-min.jpg");
+
+  &__container {
+    @include m.flex-style(5rem);
+    transform: skewY(5deg);
+  }
+}
+
+.feature {
+  padding: 3.5rem;
+  background-color: rgba(v.$color-white-dark, 0.8);
+  text-align: center;
+  @include m.box-style;
+  @include m.box-transition(0.15s);
+
+  &:hover {
+    @include m.box-animation(5px, -10px);
+  }
+
+  &__icon {
+    font-size: 6rem;
+    margin-bottom: 2rem;
+    @include m.heading-style;
+  }
+}
+
+// ********************************************************************
+// Section-offers Style
+// ********************************************************************
+.section-offers {
+  padding: v.$padding-section;
+  padding-top: 14%;
+  background-color: v.$color-white-dark;
+  margin-top: -15vh;
+  text-align: center;
+
+  &__container {
+    @include m.flex-style(5%);
+  }
+}
+
+.card {
+  perspective: 150rem;
+  flex-basis: 30%;
+  height: 540px;
+  position: relative;
+
+  &:hover {
+    .card__side--front {
+      transform: rotateY(-180deg);
+    }
+
+    .card__side--back {
+      transform: rotateY(0);
+      z-index: 1;
+    }
+  }
+
+  &__side {
+    height: 100%;
+    backface-visibility: hidden;
+    @include m.box-transition(0.5s);
+    @include m.box-style($blur: 20px, $color: v.$color-grey-light);
+
+    &--front {
+      background-color: v.$color-white;
+    }
+
+    &--back {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-transform: uppercase;
+      color: v.$color-white;
+      transform: rotateY(180deg);
+      z-index: -1;
+
+      &--orange {
+        @include m.bg-style("", v.$color-orange-light, v.$color-orange-dark, 1);
+      }
+
+      &--green {
+        @include m.bg-style(
+          "",
+          v.$color-primary-light,
+          v.$color-primary-dark,
+          1
+        );
+      }
+
+      &--blue {
+        @include m.bg-style("", v.$color-blue-light, v.$color-blue-dark, 1);
+      }
+    }
+  }
+
+  &__image {
+    height: 45%;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 90%);
+    filter: contrast(110%);
+
+    &--orange {
+      @include m.bg-style(
+        "../img/compressed/nat-5-min.jpg",
+        v.$color-orange-light,
+        v.$color-orange-dark
+      );
+    }
+
+    &--green {
+      @include m.bg-style("../img/compressed/nat-6-min.jpg");
+    }
+
+    &--blue {
+      @include m.bg-style(
+        "../img/compressed/nat-7-min.jpg",
+        v.$color-blue-light,
+        v.$color-blue-dark
+      );
+    }
+  }
+
+  &__heading {
+    position: absolute;
+    top: 27%;
+    right: 3%;
+    padding: 1.5rem;
+    color: v.$color-white;
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+
+    &--orange {
+      background-color: rgba(v.$color-orange, 0.6);
+    }
+
+    &--green {
+      background-color: rgba(v.$color-primary, 0.6);
+    }
+
+    &--blue {
+      background-color: rgba(v.$color-blue, 0.6);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 0 3rem;
+  }
+
+  &__item {
+    padding: 1.3rem 0;
+  }
+
+  &__item:not(:first-child) {
+    border-top: solid 1px v.$color-white-dark-2;
+  }
+
+  &__text {
+    font-size: 1.8rem;
+  }
+
+  &__price {
+    font-size: 6rem;
+    font-weight: 300;
+    margin: 3rem 0;
+  }
+}
+
+// ********************************************************************
+// Section-testimonial Style
+// ********************************************************************
+.section-testimonial {
+  padding: v.$padding-section;
+  padding-top: 15rem;
+  position: relative;
+  overflow: hidden;
+
+  &__box {
+    text-align: center;
+  }
+}
+
+.bg-video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+}
+
+.testimonial {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  margin: 0 auto;
+  background-color: rgba(v.$color-white, 0.8);
+  transform: skewX(-7deg);
+  padding: 5rem 7rem;
+
+  &:hover {
+    .testimonial__name {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    .testimonial__img {
+      filter: blur(3px) brightness(80%);
+      transform: scale(1);
+    }
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: 10rem;
+  }
+
+  & > * {
+    transform: skewX(7deg);
+  }
+
+  &__img-box {
+    position: relative;
+    margin-right: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  &__img {
+    height: 100%;
+    transform: scale(1.2);
+    @include m.box-transition;
+  }
+
+  &__name {
+    text-align: center;
+    font-size: 2rem;
+    font-style: normal;
+    text-transform: uppercase;
+    color: v.$color-white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 40%);
+    opacity: 0;
+    line-height: 1.5;
+    @include m.box-transition;
+  }
+}
+
+// ********************************************************************
+// Section-contact Style
+// ********************************************************************
+.section-contact {
+  padding: v.$padding-section;
+  @include m.bg-style("");
+}
+
+.contact-box {
+  padding: 6rem;
+
+  @include m.bg-style(
+    "../img/compressed/nat-10-min.jpg",
+    v.$color-white,
+    v.$color-white,
+    $opacity-1: 0.8,
+    $opacity-2: 0,
+    $direction: 100deg,
+    $stop-1: 48%,
+    $stop-2: 48%
+  );
+
+  &__form-row {
+    position: relative;
+
+    &:not(:last-of-type) {
+      margin-bottom: 5rem;
+    }
+
+    &--flex {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__text {
+    width: 35%;
+    font-size: 2rem;
+    padding: 2rem 3rem 1.6rem;
+    background-color: rgba(v.$color-white, 0.7);
+    border: none;
+    border-bottom: solid 3px transparent;
+    outline: none;
+
+    &:focus {
+      border-bottom: solid 3px v.$color-orange;
+      @include m.box-style($color: v.$color-grey-light);
+
+      &:valid {
+        border-bottom: solid 3px v.$color-primary;
+      }
+
+      &:invalid {
+        border-bottom: solid 3px v.$color-orange;
+      }
+    }
+  }
+
+  &__text:placeholder-shown + &__label--slide {
+    transform: translateY(-7.5rem);
+    opacity: 0;
+  }
+
+  &__label {
+    font-weight: 700;
+    font-size: 2rem;
+
+    &:not(:last-of-type) {
+      margin-right: 3rem;
+    }
+
+    &--slide {
+      position: absolute;
+      left: 3rem;
+      top: 7.5rem;
+      @include m.box-transition(0.2s);
+    }
+  }
+
+  &__radio {
+    margin-right: 1rem;
+    transform: scale(1.4);
+  }
+}
+
+// ********************************************************************
+// Footer Style
+// ********************************************************************
+.footer {
+  background-color: v.$color-black-light;
+  padding: 17rem 23rem;
+  text-align: center;
+
+  &__logo {
+    width: 20rem;
+  }
+
+  &__container {
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10rem;
+    @include m.flex-style;
+  }
+
+  &__list {
+    align-items: center;
+    list-style: none;
+    text-transform: uppercase;
+    @include m.flex-style(3rem);
+  }
+
+  &__link {
+    color: v.$color-white;
+    text-decoration: none;
+    @include m.box-transition(0.15s);
+
+    &:hover {
+      color: v.$color-primary;
+    }
+  }
+
+  &__list,
+  &__copyright {
+    border-top: solid 1.5px v.$color-white;
+    padding-top: 1.5rem;
+    font-size: 1.7rem;
+    color: v.$color-white;
+  }
+}

@@ -1,0 +1,422 @@
+@use "abstracts/mixins" as m;
+@use "abstracts/variables" as v;
+
+/* *************************************** */
+/* Media Stlye */
+/* *************************************** */
+/* Extra Large 2300px to ~ */
+@media only screen and (min-width: 2300px) {
+  html {
+    font-size: 75%;
+  }
+
+  .feature {
+    padding: 6.5rem 4.5rem;
+  }
+
+  .section-offers__container {
+    gap: 9.5%;
+  }
+
+  .card {
+    flex-basis: 27%;
+    height: 650px;
+  }
+}
+
+/* Default range */
+
+/* Large laptop to Desktop: 1324px ~ 1728px */
+@media only screen and (max-width: 1728px) {
+  html {
+    font-size: 57%;
+  }
+
+  .section-offers {
+    padding-top: 14%;
+  }
+
+  .card {
+    height: 480px;
+
+    &__heading {
+      font-size: 2.3rem;
+    }
+
+    &__list {
+      font-size: 1.6rem;
+    }
+  }
+
+  .footer__list {
+    gap: 1.6rem;
+  }
+
+  .footer__list,
+  .footer__copyright {
+    font-size: 1.6rem;
+  }
+}
+
+/* Large Tablet to Laptop: 848px ~ 1323px */
+@media only screen and (max-width: 1323px) {
+  html {
+    font-size: 54%;
+  }
+
+  body {
+    padding: 0;
+  }
+
+  .nav {
+    top: 4rem;
+    right: 4rem;
+  }
+
+  .heading-secondary {
+    font-size: 3.3rem;
+  }
+
+  .header {
+    clip-path: polygon(0px 0px, 100% 0px, 100% 80vh, 0px 95vh);
+  }
+
+  .section-about {
+    padding-top: 20%;
+    padding-bottom: 22%;
+  }
+
+  .gallery__img {
+    width: 28rem;
+
+    &--front {
+      left: 20%;
+    }
+
+    &--middle {
+      top: 13%;
+      left: 40%;
+    }
+  }
+
+  .section-features__container {
+    gap: 5rem 8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .feature {
+    flex-basis: 35%;
+  }
+
+  .section-offers {
+    padding-top: 20%;
+  }
+
+  .card__price {
+    font-size: 4.5rem;
+  }
+
+  .btn--small {
+    font-size: 1.2rem;
+  }
+
+  .testimonial {
+    width: 85%;
+  }
+
+  .contact-box {
+    @include m.bg-style(
+      "../img/nat-10.jpg",
+      v.$color-white,
+      v.$color-white,
+      $opacity-1: 0.9,
+      $opacity-2: 0,
+      $direction: 100deg,
+      $stop-1: 64%,
+      $stop-2: 64%
+    );
+
+    &__text {
+      width: 55%;
+    }
+  }
+
+  .footer__container {
+    flex-direction: column;
+    gap: 7rem;
+  }
+}
+
+/* Large Phone to Tablet: 403px ~ 847px */
+@media only screen and (max-width: 847px) {
+  html {
+    font-size: 50%;
+  }
+
+  .header__logo {
+    width: 8.5rem;
+  }
+
+  .heading-primary {
+    font-size: 5rem;
+
+    &__text--main {
+      letter-spacing: 2.4rem;
+    }
+
+    &__text--sub {
+      font-size: 1.8rem;
+      letter-spacing: 1rem;
+    }
+  }
+
+  .heading-secondary {
+    font-size: 2.7rem;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    &--round {
+      padding: 1.7rem 3rem;
+    }
+  }
+
+  .header {
+    clip-path: polygon(0px 0px, 100% 0px, 100% 100vh, 0px 100vh);
+  }
+
+  .section-about {
+    margin-top: 0;
+
+    &__container {
+      flex-direction: column-reverse;
+    }
+
+    &__text {
+      margin-top: 2rem;
+    }
+  }
+
+  .gallery__img {
+    width: 35%;
+    position: relative;
+
+    &--back {
+      top: -5rem;
+      left: 14%;
+    }
+
+    &--middle {
+      top: -5rem;
+      left: 16%;
+    }
+
+    &--front {
+      top: -3rem;
+      left: 33%;
+    }
+  }
+
+  .section-features__container {
+    gap: 4rem;
+  }
+
+  .feature {
+    flex-basis: 59%;
+  }
+
+  .section-offers {
+    padding-top: 26%;
+  }
+
+  .section-offers__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 59%;
+
+    &:hover {
+      .card__side--front {
+        transform: rotateY(0deg);
+      }
+
+      .card__side--back {
+        z-index: 0;
+      }
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: 6rem;
+    }
+
+    &__side {
+      &--front {
+        height: 370px;
+        transform: rotateY(0deg);
+        padding-bottom: 4.5rem;
+      }
+
+      &--back {
+        position: static;
+        transform: rotateY(0deg);
+        z-index: 0;
+        padding: 3rem;
+        clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+        margin-top: -3.7rem;
+        border-radius: 0 0 3px 3px;
+      }
+    }
+
+    &__image {
+      border-radius: 3px 3px 0 0;
+    }
+
+    &__heading {
+      top: 23%;
+    }
+  }
+
+  .testimonial {
+    width: 100%;
+    transform: skewX(0deg);
+    padding: 4rem;
+
+    & > * {
+      transform: skewX(0deg);
+    }
+
+    &__img-box {
+      margin-right: 2rem;
+    }
+  }
+
+  .contact-box {
+    padding: 4.5rem;
+    background: linear-gradient(
+        100deg,
+        rgba(255, 255, 255, 0.8) 100%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      url(../img/nat-10.jpg) center center / cover;
+
+    &__text {
+      width: 95%;
+      font-size: 1.7rem;
+    }
+
+    &__label {
+      font-size: 1.7rem;
+    }
+
+    &__radio {
+      transform: scale(1.2);
+    }
+  }
+
+  .footer {
+    padding: 15rem 5rem;
+  }
+}
+
+/* Extra small phone to Phone: 0px ~ 402px*/
+@media only screen and (max-width: 402px) {
+  html {
+    font-size: 45%;
+  }
+
+  .nav {
+    top: 3.3rem;
+  }
+
+  .heading-primary {
+    font-size: 4rem;
+
+    &__text--sub {
+      letter-spacing: 0.8rem;
+    }
+  }
+
+  .section-about {
+    padding-bottom: 30%;
+  }
+
+  .feature,
+  .card {
+    width: 95%;
+  }
+
+  .section-offers {
+    padding-top: 30%;
+  }
+
+  .testimonial {
+    flex-direction: column;
+    gap: 3rem;
+
+    &__article {
+      text-align: center;
+    }
+  }
+
+  .contact-box__label:not(:last-of-type) {
+    margin-right: 1rem;
+  }
+
+  .footer__list {
+    gap: 1rem;
+  }
+}
+
+/* *************************************** */
+/* Img Responsive Stlye */
+/* *************************************** */
+@media only screen and (min-resolution: 192dpi) and (min-width: 500px),
+  (min-width: 1000px) {
+  .header {
+    @include m.bg-style("../img/compressed/hero-large.jpg");
+  }
+
+  .section-features {
+    @include m.bg-style("../img/compressed/nat-4-large.jpg");
+  }
+
+  .card {
+    &__img {
+      &--orange {
+        @include m.bg-style(
+          "../img/compressed/nat-5-large.jpg",
+          v.$color-orange-light,
+          v.$color-orange-dark
+        );
+      }
+
+      &--green {
+        @include m.bg-style("../img/compressed/nat-6-large.jpg");
+      }
+
+      &--blue {
+        @include m.bg-style(
+          "../img/compressed/nat-7-large.jpg",
+          v.$color-blue-light,
+          v.$color-blue-dark
+        );
+      }
+    }
+  }
+
+  .contact-box {
+    @include m.bg-style(
+      "../img/compressed/nat-10-large.jpg",
+      v.$color-white,
+      v.$color-white,
+      $opacity-1: 0.8,
+      $opacity-2: 0,
+      $direction: 100deg,
+      $stop-1: 48%,
+      $stop-2: 48%
+    );
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "\\",
+    "watch-sass": "sass --watch resources/sass/main.scss resources/css/style.css",
+    "compile-sass": "sass resources/sass/main.scss resources/css/style.comp.css",
+    "concat-css": "concat -o resources/css/style.concat.css resources/css/style.comp.css resources/css/fontawesome.css",
+    "prefix-css": "postcss resources/css/style.comp.css --use autoprefixer -o resources/css/style.prefix.css",
+    "compress-css": "node-sass resources/css/style.prefix.css resources/css/style.min.css --output-style compressed",
+    "build-css": "npm-run-all compile-sass prefix-css compress-css"
+  },
+  "author": "jinwoo park",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "concat": "^1.0.3",
+    "node-sass": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^10.0.0",
+    "sass": "^1.50.0"
+  }
+}

@@ -1,0 +1,70 @@
+@use "variables" as v;
+
+@mixin bg-style(
+  $url,
+  $start-color: v.$color-primary-light,
+  $end-color: v.$color-primary-dark,
+  $opacity-1: 0.8,
+  $opacity-2: 0.8,
+  $direction: to right bottom,
+  $stop-1: 0%,
+  $stop-2: 100%
+) {
+  background: linear-gradient(
+      $direction,
+      rgba($start-color, $opacity-1) $stop-1,
+      rgba($end-color, $opacity-2) $stop-2
+    ),
+    url($url) center/cover;
+}
+
+@mixin link-style {
+  display: inline-block;
+  text-decoration: none;
+}
+
+@mixin btn-style {
+  padding: 2rem 4rem;
+  border-radius: 40px;
+}
+
+@mixin box-transition($speed: 0.3s) {
+  transition: $speed linear;
+}
+
+@mixin box-animation($shadow, $element) {
+  box-shadow: 0 $shadow 10px v.$color-grey;
+  transform: translateY($element);
+}
+
+@mixin box-style($y-axis: 5px, $blur: 12px, $color: v.$color-grey) {
+  box-shadow: 0 $y-axis $blur $color;
+  border-radius: 3px;
+}
+
+@mixin paragraph-style($top: 3rem, $bottom: 3rem) {
+  margin: $top 0 $bottom;
+  line-height: 1.5;
+}
+
+@mixin heading-style {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    90deg,
+    v.$color-primary-light,
+    v.$color-primary-dark
+  );
+}
+
+@mixin flex-style($gap: 0) {
+  display: flex;
+  gap: $gap;
+}
+
+@mixin footer-style {
+  border-top: solid 1.5px v.$color-white;
+  padding-top: 2.5rem;
+}
